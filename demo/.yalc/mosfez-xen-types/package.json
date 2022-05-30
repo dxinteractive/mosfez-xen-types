@@ -16,9 +16,14 @@
   "repository": "git@github.com:dxinteractive/mosfez-xen-types.git",
   "author": "Damien Clarke <dxinteractive@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "prep": "yarn && cd demo && yarn",
     "build": "yarn rollup -c",
+    "test": "yarn jest",
+    "lint": "yarn eslint src",
     "pretty": "yarn prettier --write ."
   },
   "dependencies": {
@@ -28,5 +33,5 @@
   "files": [
     "dist"
   ],
-  "yalcSig": "5d8c07ebf932e88b64d6f09df1a8b9db"
+  "yalcSig": "68a38d4fb7012e2b67a99c990f54034c"
 }
