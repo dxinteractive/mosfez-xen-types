@@ -1,2 +1,2 @@
-# mosfez-xenomath
-Basic xen math types for microtonal scale representation and manipulation with typescript / javascript
+# mosfez-xen-types
+Basic xen number types for microtonal scale representation and manipulation with typescript / javascript
