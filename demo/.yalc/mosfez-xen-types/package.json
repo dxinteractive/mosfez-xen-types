@@ -1,0 +1,32 @@
+{
+  "name": "mosfez-xen-types",
+  "version": "0.0.0",
+  "description": "Basic xen number types for microtonal scale representation and manipulation with typescript / javascript",
+  "main": "./dist/main.js",
+  "exports": {
+    ".": {
+      "default": "./dist/main.js",
+      "types": "./dist/main.d.ts"
+    },
+    "./other": {
+      "default": "./dist/other.js",
+      "types": "./dist/other.d.ts"
+    }
+  },
+  "repository": "git@github.com:dxinteractive/mosfez-xen-types.git",
+  "author": "Damien Clarke <dxinteractive@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "prep": "yarn && cd demo && yarn",
+    "build": "yarn rollup -c",
+    "pretty": "yarn prettier --write ."
+  },
+  "dependencies": {
+    "yalc": "^1.0.0-pre.53"
+  },
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "yalcSig": "5d8c07ebf932e88b64d6f09df1a8b9db"
+}
