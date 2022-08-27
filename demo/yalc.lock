@@ -1,9 +1,0 @@
-{
-  "version": "v1",
-  "packages": {
-    "mosfez-xen-types": {
-      "signature": "68a38d4fb7012e2b67a99c990f54034c",
-      "file": true
-    }
-  }
-}

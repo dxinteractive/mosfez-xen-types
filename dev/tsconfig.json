@@ -10,12 +10,15 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "moduleResolution": "node12",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "mosfez-xen-types": ["../src/datastore"]
+    }
   },
-  "include": ["src"],
+  "include": ["src", "../src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

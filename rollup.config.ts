@@ -1,7 +1,7 @@
 import dts from "rollup-plugin-dts";
 import esbuild from "rollup-plugin-esbuild";
 
-const entrypoints = ["main", "other"];
+const entrypoints = ["datastore"];
 
 export default entrypoints.flatMap((name) => {
   const common = {

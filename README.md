@@ -1,5 +1,7 @@
 # mosfez-xen-types
 
+[![npm](https://img.shields.io/npm/v/mosfez-xen-types.svg)](https://www.npmjs.com/package/mosfez-xen-types) ![Master build](https://github.com/dxinteractive/mosfez-xen-types/workflows/CI/badge.svg?branch=main)
+
 Basic xen number types for microtonal scale representation and manipulation with TypeScript / JavaScript.
 
 ## Development
