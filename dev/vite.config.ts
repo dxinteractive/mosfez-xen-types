@@ -6,7 +6,7 @@ import path from "path";
 export default defineConfig({
   resolve: {
     alias: {
-      "mosfez-xen-types": path.resolve(__dirname, "../src/datastore"),
+      "mosfez-xen-types": path.resolve(__dirname, "../src/xen-types"),
     },
   },
   plugins: [react()],

@@ -1,7 +1,7 @@
 import dts from "rollup-plugin-dts";
 import esbuild from "rollup-plugin-esbuild";
 
-const entrypoints = ["datastore"];
+const entrypoints = ["xen-types"];
 
 export default entrypoints.flatMap((name) => {
   const common = {

@@ -16,7 +16,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "mosfez-xen-types": ["../src/datastore"]
+      "mosfez-xen-types": ["../src/xen-types"]
     }
   },
   "include": ["src", "../src"],
