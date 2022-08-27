@@ -1,4 +1,4 @@
-import { cents, Cents, ed2, Ed2, ratio, Ratio } from "./xen-types";
+import { cents, Cents, ed2, Ed2, ratio, Ratio, parse } from "./xen-types";
 
 describe("ratio", () => {
   it("should make ratio", () => {
@@ -39,9 +39,13 @@ describe("ratio", () => {
       expect(ratio(" 3/2   ").value).toEqual([3, 2]);
     });
 
+    it("should allow single digit ratios", () => {
+      expect(ratio("3").value).toEqual([3, 1]);
+    });
+
     it("should error if wrong number of slashes", () => {
-      expect(() => ratio("32").value).toThrow(
-        `ratio "32" must contain a single slash (/)`
+      expect(() => ratio("3/3/5").value).toThrow(
+        `ratio "3/3/5" must contain a single slash (/)`
       );
     });
 
@@ -185,5 +189,56 @@ describe("cents", () => {
     it("should error if not a number", () => {
       expect(() => cents("pppp").value).toThrow(`"pppp" is not a number`);
     });
+  });
+});
+
+describe("parse", () => {
+  it("should parse a ratio", () => {
+    expect(parse(`13/11`) instanceof Ratio).toBe(true);
+  });
+
+  it("should parse a single digit ratio", () => {
+    console.log("parse(`2`)", parse(`2`));
+    expect(parse(`2`) instanceof Ratio).toBe(true);
+  });
+
+  it("should fail to parse a ratio", () => {
+    expect(parse(`123aas`)).toBe("invalid");
+  });
+
+  it("should parse an ed2", () => {
+    expect(parse(`2\\12`) instanceof Ed2).toBe(true);
+  });
+
+  it("should fail to parse an ed2", () => {
+    expect(parse(`2\\19aaaaa`)).toBe("invalid");
+  });
+
+  it("should parse cents", () => {
+    expect(parse(`12.`) instanceof Cents).toBe(true);
+  });
+
+  it("should parse cents", () => {
+    expect(parse(`12c`) instanceof Cents).toBe(true);
+  });
+
+  it("should fail to parse cents", () => {
+    expect(parse(`c`)).toBe("invalid");
+  });
+
+  it("should fail to parse cents", () => {
+    expect(parse(`abc`)).toBe("invalid");
+  });
+
+  it("should ignore empty", () => {
+    expect(parse(` `)).toBe("ignore");
+  });
+
+  it("should ignore exclamation mark", () => {
+    expect(parse(`! thing`)).toBe("ignore");
+  });
+
+  it("should ignore hash mark", () => {
+    expect(parse(`# thing`)).toBe("ignore");
   });
 });

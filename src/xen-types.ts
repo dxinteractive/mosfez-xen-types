@@ -14,7 +14,7 @@ export const isString = (input: unknown): input is string =>
 
 export const stringToNumber = (str: string): number => {
   const result = Number(str);
-  if (isNaN(result)) {
+  if (isNaN(result) || str === "") {
     throw new Error(`"${str}" is not a number`);
   }
   return result;
@@ -110,10 +110,10 @@ export class Ratio {
 
   static parse(str: string): [number, number] {
     const split = str.trim().split("/");
-    if (split.length !== 2)
+    if (split.length > 2)
       throw new Error(`ratio "${str}" must contain a single slash (/)`);
     const n = stringToNumber(split[0]);
-    const d = stringToNumber(split[1]);
+    const d = split.length > 1 ? stringToNumber(split[1]) : 1;
     return [n, d];
   }
 
@@ -214,6 +214,28 @@ export function ed2(a: Ed2 | string | number, b?: number): Ed2 {
 // parsing
 //
 
-export const parse = (input: string): Pitch => {
-  throw new Error(`could not parse "${input}"`);
+export const parse = (input: string): Pitch | "ignore" | "invalid" => {
+  input = input.trim();
+
+  const catchAndError = (cb: () => Pitch) => {
+    try {
+      return cb();
+    } catch (e) {
+      return "invalid";
+    }
+  };
+
+  if (input === "" || "!#".indexOf(input[0]) !== -1) {
+    return "ignore";
+  }
+
+  if (input.indexOf("\\") !== -1) {
+    return catchAndError(() => ed2(input));
+  }
+
+  if (input.indexOf(".") !== -1 || input.slice(-1) === "c") {
+    return catchAndError(() => cents(input));
+  }
+
+  return catchAndError(() => ratio(input));
 };
